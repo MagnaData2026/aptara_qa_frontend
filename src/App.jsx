@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LandingPage from "./pages/LandingPage";
-// import AssessmentPage from "./pages/AssessmentPage";
-// import AnalyzingPage from "./pages/AnalyzingPage";
-// import ResultPage from "./pages/ResultPage";
+import Assessment from "./pages/Assessment";
+import Analyzing from "./pages/Analyzing";
+import Result from "./pages/Result";
 
 function App() {
   return (
@@ -14,13 +14,13 @@ function App() {
         <Route path="/" element={<LandingPage />} />
 
         {/* Assessment Questions */}
-        {/* <Route path="/assessment" element={<AssessmentPage />} /> */}
+        <Route path="/assessment" element={<Assessment />} />
 
         {/* AI Analysis Loading Page */}
-        {/* <Route path="/analyzing" element={<AnalyzingPage />} /> */}
+        <Route path="/analyzing" element={<Analyzing />} />
 
         {/* Personalized Result */}
-        {/* <Route path="/result" element={<ResultPage />} /> */}
+        <Route path="/result" element={<Result />} />
 
         {/* Invalid URL fallback */}
         <Route path="*" element={<LandingPage />} />

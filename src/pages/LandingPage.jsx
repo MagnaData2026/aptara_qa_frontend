@@ -311,126 +311,16 @@ const LandingPage = () => {
                 RIGHT SURVEY PREVIEW
             ================================================== */}
 
-            <div className="fade-three relative mx-auto w-full max-w-[590px] lg:mx-0">
-              <div className="soft-pulse absolute -right-20 top-12 h-72 w-72 rounded-full bg-blue-100/70 blur-3xl" />
+            <div className="fade-three relative mx-auto w-full max-w-[620px] lg:mx-0">
+              {/* Soft background glow */}
+              <div className="soft-pulse pointer-events-none absolute -right-16 top-10 h-72 w-72 rounded-full bg-blue-100/60 blur-3xl" />
 
-              <div className="relative border border-slate-200 bg-white p-3 shadow-[0_30px_80px_rgba(7,29,61,0.12)]">
-                <div className="border border-slate-100 bg-white">
-                  {/* Preview Header */}
-                  <div className="flex items-center justify-between border-b border-slate-100 px-6 py-5">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#205A9E]">
-                        L&D Assessment
-                      </p>
-                    </div>
-
-                    <p className="text-xs font-medium text-slate-400">
-                      Question 2 of 5
-                    </p>
-                  </div>
-
-                  <div className="p-6 sm:p-8">
-                    {/* Progress */}
-                    <div>
-                      <div className="mb-3 flex items-center justify-between">
-                        <p className="text-xs font-medium text-slate-500">
-                          Assessment progress
-                        </p>
-
-                        <p className="text-xs font-semibold text-[#08295B]">
-                          40%
-                        </p>
-                      </div>
-
-                      <div className="h-1.5 overflow-hidden bg-slate-100">
-                        <div className="progress-grow h-full bg-[#205A9E]" />
-                      </div>
-                    </div>
-
-                    {/* Question */}
-                    <div className="mt-9">
-                      <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
-                        Current Challenge
-                      </span>
-
-                      <h3 className="mt-3 max-w-md text-xl font-semibold leading-8 tracking-[-0.02em] text-[#071D3D] sm:text-2xl">
-                        What is the biggest challenge facing your L&D function
-                        today?
-                      </h3>
-                    </div>
-
-                    {/* Options */}
-                    <div className="mt-7 space-y-3">
-                      {[
-                        {
-                          label: "Limited team capacity",
-                          selected: true,
-                        },
-                        {
-                          label: "Low learner engagement",
-                          selected: false,
-                        },
-                        {
-                          label: "Difficulty scaling learning",
-                          selected: false,
-                        },
-                        {
-                          label: "Measuring learning impact",
-                          selected: false,
-                        },
-                      ].map((option) => (
-                        <div
-                          key={option.label}
-                          className={`flex cursor-default items-center gap-4 border p-4 transition-all duration-300 ${
-                            option.selected
-                              ? "border-[#205A9E] bg-[#F4F8FC]"
-                              : "border-slate-200 bg-white"
-                          }`}
-                        >
-                          <div
-                            className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
-                              option.selected
-                                ? "border-[#205A9E]"
-                                : "border-slate-300"
-                            }`}
-                          >
-                            {option.selected && (
-                              <div className="h-2.5 w-2.5 rounded-full bg-[#205A9E]" />
-                            )}
-                          </div>
-
-                          <span
-                            className={`text-sm ${
-                              option.selected
-                                ? "font-semibold text-[#08295B]"
-                                : "font-medium text-slate-600"
-                            }`}
-                          >
-                            {option.label}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Bottom Navigation */}
-                    <div className="mt-7 flex items-center justify-between border-t border-slate-100 pt-6">
-                      <button
-                        type="button"
-                        className="text-sm font-medium text-slate-400"
-                      >
-                        Back
-                      </button>
-
-                      <button
-                        type="button"
-                        className="flex items-center gap-2 bg-[#08295B] px-5 py-3 text-sm font-semibold text-white"
-                      >
-                        Continue
-                        <ArrowIcon />
-                      </button>
-                    </div>
-                  </div>
-                </div>
+              <div className="relative overflow-hidden rounded-2xl bg-white shadow-[0_25px_70px_rgba(7,29,61,0.12)]">
+                <img
+                  src="/aptaraLanding.png"
+                  alt="Aptara Learning and Development"
+                  className="h-150 w-full object-contain"
+                />
               </div>
             </div>
           </div>
