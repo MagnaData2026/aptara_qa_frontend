@@ -313,13 +313,19 @@ const LandingPage = () => {
 
             <div className="fade-three relative mx-auto w-full max-w-[620px] lg:mx-0">
               {/* Soft background glow */}
-              <div className="soft-pulse pointer-events-none absolute -right-16 top-10 h-72 w-72 rounded-full bg-blue-100/60 blur-3xl" />
+              <div className="soft-pulse pointer-events-none absolute -right-16 top-10 hidden h-72 w-72 rounded-full bg-blue-100/60 blur-3xl sm:block" />
 
-              <div className="relative overflow-hidden rounded-2xl bg-white shadow-[0_25px_70px_rgba(7,29,61,0.12)]">
+              <div className="relative overflow-hidden rounded-xl bg-white shadow-[0_15px_40px_rgba(7,29,61,0.10)] sm:rounded-2xl sm:shadow-[0_25px_70px_rgba(7,29,61,0.12)]">
                 <img
                   src="/aptaraLanding.png"
                   alt="Aptara Learning and Development"
-                  className="h-150 w-full object-contain"
+                  className="
+        block
+        h-auto
+        w-full
+        object-contain
+        lg:h-[600px]
+      "
                 />
               </div>
             </div>
