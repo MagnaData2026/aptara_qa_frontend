@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import { useAssessmentSubmission } from "../hooks/useAssessment";
 
 const analysisSteps = [
   "Understanding your L&D maturity",
@@ -26,32 +28,55 @@ const CheckIcon = () => (
 const Analyzing = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { submitAnswers } = useAssessmentSubmission();
 
-  const answers = location.state?.answers || {};
+  const questions = useMemo(() => location.state?.questions || [], [location.state]);
+  const answers = useMemo(() => location.state?.answers || {}, [location.state]);
 
   const [completedSteps, setCompletedSteps] = useState(0);
 
   useEffect(() => {
+    if (!questions.length) {
+      navigate("/assessment", { replace: true });
+      return undefined;
+    }
+
     const stepTimers = analysisSteps.map((_, index) =>
       setTimeout(() => {
         setCompletedSteps(index + 1);
-      }, 450 + index * 450)
+      }, 450 + index * 450),
     );
 
-    const navigateTimer = setTimeout(() => {
-      navigate("/result", {
-        replace: true,
-        state: {
+    const submitTimer = setTimeout(async () => {
+      try {
+        const result = await submitAnswers({ questions, answers });
+        const payload = { result, questions, answers };
+        sessionStorage.setItem("aptara-assessment-result", JSON.stringify(payload));
+
+        navigate("/result", {
+          replace: true,
+          state: payload,
+        });
+      } catch (submissionError) {
+        const payload = {
+          errorMessage: submissionError.message,
+          questions,
           answers,
-        },
-      });
+        };
+        sessionStorage.setItem("aptara-assessment-result", JSON.stringify(payload));
+
+        navigate("/result", {
+          replace: true,
+          state: payload,
+        });
+      }
     }, 2500);
 
     return () => {
       stepTimers.forEach(clearTimeout);
-      clearTimeout(navigateTimer);
+      clearTimeout(submitTimer);
     };
-  }, [answers, navigate]);
+  }, [answers, navigate, questions, submitAnswers]);
 
   const progress = (completedSteps / analysisSteps.length) * 100;
 
@@ -109,7 +134,6 @@ const Analyzing = () => {
         }
       `}</style>
 
-      {/* Header */}
       <header className="bg-[#071D3D]">
         <div className="mx-auto flex h-[74px] w-full max-w-7xl items-center justify-between px-5 sm:px-7 lg:px-8">
           <img
@@ -124,27 +148,21 @@ const Analyzing = () => {
         </div>
       </header>
 
-      {/* Main */}
       <main className="flex flex-1 items-center justify-center px-5 py-14 sm:px-7">
         <div className="w-full max-w-3xl">
           <div className="relative overflow-hidden border border-slate-200 bg-white px-6 py-12 shadow-[0_25px_70px_rgba(7,29,61,0.08)] sm:px-12 sm:py-14">
-            
-            {/* Background decoration */}
             <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-50 blur-3xl" />
 
             <div className="relative">
-              {/* Loading graphic */}
               <div className="mx-auto flex h-24 w-24 items-center justify-center">
                 <div className="analyzing-pulse absolute h-24 w-24 rounded-full bg-[#EAF2FA]" />
 
                 <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-[#C9D9E8] bg-white">
                   <div className="analyzing-spinner h-12 w-12 rounded-full border-[3px] border-slate-100 border-t-[#205A9E]" />
-
                   <div className="absolute h-3 w-3 rounded-full bg-[#071D3D]" />
                 </div>
               </div>
 
-              {/* Heading */}
               <div className="mt-8 text-center">
                 <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#205A9E]">
                   Analyzing your responses
@@ -155,12 +173,10 @@ const Analyzing = () => {
                 </h1>
 
                 <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-slate-500 sm:text-base">
-                  We're reviewing your responses across the key areas of
-                  maturity, priorities, delivery and capacity.
+                  We&apos;re validating your responses and loading the best available summary for your selected combination.
                 </p>
               </div>
 
-              {/* Progress */}
               <div className="mx-auto mt-9 max-w-xl">
                 <div className="mb-3 flex items-center justify-between">
                   <span className="text-xs font-medium text-slate-400">
@@ -182,7 +198,6 @@ const Analyzing = () => {
                 </div>
               </div>
 
-              {/* Steps */}
               <div className="mx-auto mt-9 max-w-xl space-y-3">
                 {analysisSteps.map((step, index) => {
                   const completed = index < completedSteps;
@@ -195,8 +210,8 @@ const Analyzing = () => {
                         completed
                           ? "border-[#C9D9E8] bg-[#F4F8FC]"
                           : active
-                          ? "border-slate-200 bg-white"
-                          : "border-slate-100 bg-slate-50/50"
+                            ? "border-slate-200 bg-white"
+                            : "border-slate-100 bg-slate-50/50"
                       }`}
                     >
                       <div
@@ -204,8 +219,8 @@ const Analyzing = () => {
                           completed
                             ? "bg-[#071D3D] text-white"
                             : active
-                            ? "border-2 border-[#205A9E] bg-white"
-                            : "border border-slate-200 bg-white"
+                              ? "border-2 border-[#205A9E] bg-white"
+                              : "border border-slate-200 bg-white"
                         }`}
                       >
                         {completed ? (
