@@ -253,6 +253,20 @@ const Analyzing = () => {
           </div>
         </div>
       </main>
+
+      <footer className="mt-4 bg-[#071D3D]">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 py-7 sm:flex-row sm:px-7 lg:px-8">
+          <img
+            src="/aptaraLogo.png"
+            alt="Aptara"
+            className="h-5 w-auto object-contain sm:h-6"
+          />
+
+          <p className="text-[11px] text-white/50">
+            © {new Date().getFullYear()} Aptara. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };

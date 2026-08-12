@@ -206,7 +206,7 @@ const Result = () => {
           />
 
           <p className="text-[11px] text-white/50">
-            (c) {new Date().getFullYear()} Aptara. All rights reserved.
+            © {new Date().getFullYear()} Aptara. All rights reserved.
           </p>
         </div>
       </footer>

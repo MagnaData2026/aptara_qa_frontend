@@ -244,16 +244,6 @@ const Assessment = () => {
               {currentQuestion.title}
             </h1>
 
-            <div className="mt-6 max-w-4xl rounded-xl border border-[#D8E6F5] bg-[#F3F8FD] px-5 py-4">
-              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#205A9E]">
-                Why we ask
-              </p>
-
-              <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-base">
-                {currentQuestion.supporting_text ||
-                  "Select the one answer that best reflects your current situation."}
-              </p>
-            </div>
           </div>
 
           <div
@@ -370,7 +360,9 @@ const Assessment = () => {
             className="h-5 w-auto object-contain opacity-90 sm:h-6"
           />
 
-          <p className="text-[11px] text-white/50">(c) {new Date().getFullYear()} Aptara</p>
+          <p className="text-[11px] text-white/50">
+            © {new Date().getFullYear()} Aptara. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
