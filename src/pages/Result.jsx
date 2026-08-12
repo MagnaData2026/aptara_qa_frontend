@@ -131,7 +131,7 @@ const Result = ({ profile = defaultProfile }) => {
                 </h1>
               </div>
 
-              <div className="w-fit rounded-lg border border-white/20 bg-white/[0.06] px-5 py-3">
+              {/* <div className="w-fit rounded-lg border border-white/20 bg-white/[0.06] px-5 py-3">
                 <p className="text-[9px] font-semibold uppercase tracking-[0.15em] text-white/55">
                   Combination ID
                 </p>
@@ -139,7 +139,7 @@ const Result = ({ profile = defaultProfile }) => {
                 <p className="mt-1 text-sm font-bold tracking-[0.12em] text-white">
                   {profile.combinationId}
                 </p>
-              </div>
+              </div> */}
             </div>
           </section>
 
