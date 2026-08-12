@@ -89,7 +89,7 @@ const Result = () => {
             </p>
 
             <h1 className="mt-2 text-2xl font-semibold tracking-[-0.025em] sm:text-3xl">
-              Thank you for completing the assessment
+              {result?.reportTitle || "Thank you for completing the assessment"}
             </h1>
           </section>
 
@@ -130,22 +130,50 @@ const Result = () => {
           )}
 
           <section className="px-5 py-9 sm:px-8 sm:py-10 lg:px-10">
-            <div className="mx-auto max-w-4xl text-center">
+            <div className="mx-auto max-w-6xl">
               {result?.summary && (
-                <div className="rounded-xl border border-slate-200 bg-[#F8FAFC] px-6 py-6 text-left shadow-[0_5px_18px_rgba(7,29,61,0.04)]">
+                <div className="rounded-xl border border-slate-200 bg-[#F8FAFC] px-6 py-6 shadow-[0_5px_18px_rgba(7,29,61,0.04)] sm:px-8 sm:py-8">
                   <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-[#205A9E]">
                     Assessment Summary
                   </p>
 
-                  <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                  <p className="mt-4 max-w-5xl text-sm leading-7 text-slate-600 sm:text-base">
                     {result.summary}
                   </p>
                 </div>
               )}
 
-              {/* <p className="mt-5 text-sm leading-7 text-slate-600 sm:text-base">
+              {(result?.recommendation || result?.nextStep) && (
+                <div className="mt-5 grid gap-5 lg:grid-cols-2">
+                  {result?.recommendation && (
+                    <div className="rounded-xl border border-[#e9eff7] bg-[#dee6ef] px-6 py-6 shadow-[0_5px_18px_rgba(7,29,61,0.04)]">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-[#205A9E]">
+                        Recommendation
+                      </p>
+
+                      <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                        {result.recommendation}
+                      </p>
+                    </div>
+                  )}
+
+                  {result?.nextStep && (
+                    <div className="rounded-xl border border-[#C4E5DD] bg-[#EFFAF7] px-6 py-6 shadow-[0_5px_18px_rgba(7,29,61,0.04)]">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-[#168666]">
+                        Next Step
+                      </p>
+
+                      <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                        {result.nextStep}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <p className="mt-5 text-center text-xs leading-7 text-slate-600 sm:text-base">
                 Thank you for sharing your L&amp;D priorities with us. Your responses have been captured successfully.
-              </p> */}
+              </p>
 
               <div className="mt-8 flex justify-center border-t border-slate-200 pt-7">
                 <button
