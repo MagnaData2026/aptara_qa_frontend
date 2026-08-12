@@ -40,7 +40,7 @@ const Result = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const routeState = location.state || getStoredState() || {};
-  const { questions = [], answers = {} } = routeState;
+  const { result, questions = [], answers = {} } = routeState;
 
   const selectedAnswers = useMemo(
     () =>
@@ -131,17 +131,21 @@ const Result = () => {
 
           <section className="px-5 py-9 sm:px-8 sm:py-10 lg:px-10">
             <div className="mx-auto max-w-4xl text-center">
-              {/* <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-[#205A9E]">
-                Thank you
-              </p> */}
+              {result?.summary && (
+                <div className="rounded-xl border border-slate-200 bg-[#F8FAFC] px-6 py-6 text-left shadow-[0_5px_18px_rgba(7,29,61,0.04)]">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-[#205A9E]">
+                    Assessment Summary
+                  </p>
 
-              {/* <h2 className="mt-3 text-2xl font-semibold tracking-[-0.025em] text-[#071D3D] sm:text-3xl">
-                We have received your responses
-              </h2> */}
+                  <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                    {result.summary}
+                  </p>
+                </div>
+              )}
 
-              <p className="mt-5 text-sm leading-7 text-slate-600 sm:text-base">
+              {/* <p className="mt-5 text-sm leading-7 text-slate-600 sm:text-base">
                 Thank you for sharing your L&amp;D priorities with us. Your responses have been captured successfully.
-              </p>
+              </p> */}
 
               <div className="mt-8 flex justify-center border-t border-slate-200 pt-7">
                 <button
