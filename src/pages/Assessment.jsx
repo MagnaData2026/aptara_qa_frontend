@@ -121,7 +121,7 @@ const Assessment = () => {
           </p>
           <h1 className="mt-3 text-2xl font-semibold">Fetching your questions</h1>
           <p className="mt-3 text-sm text-slate-500">
-            Please wait while we load the latest assessment from the backend.
+            Please wait while we load the latest assessment.
           </p>
         </div>
       </div>
@@ -159,7 +159,7 @@ const Assessment = () => {
             No assessment questions available
           </h1>
           <p className="mt-4 text-sm leading-7 text-slate-500">
-            The backend returned an empty assessment. Please check the seeded data and try again.
+           Please try again shortly.
           </p>
         </div>
       </div>
